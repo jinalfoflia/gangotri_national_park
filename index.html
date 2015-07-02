@@ -13,21 +13,54 @@
 </style>
 </head>
 <body>
+
+<style>
+.legend label,
+.legend span {
+  display:block;
+  float:left;
+  height:15px;
+  width:20%;
+  text-align:center;
+  font-size:9px;
+  color:#808080;
+  }
+</style>
+
+<!-- Set the display of this container to none so we can
+     add it programmatically to `legendControl` -->
+<div id='legend' style='display:none;'>
+  <strong>Gangotri National Park</strong>
+  <nav class='legend clearfix'>
+    <span style='background:#F1EEF6;'></span>
+    <span style='background:#91219E;'></span>
+    <span style='background:#FFADB9;'></span>
+    <span style='background:#4C4CFF;'></span>
+    <span style='background:#B2B2FF;'></span>
+    <label>snow</label>
+    <label>streams</label>
+    <label>Polygon</label>
+    <label>Rivers</label>
+    <label>boundary</label>
+    <small>Source:<a href="http://www.openstreetmap.org/#map=10/31.0594/79.0322">Open Street Maps</a></small>
+</div>
+
 	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
-<div id='map'></div>
+<div id='map' class='dark'></div>
+
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoiamluYWxmb2ZsaWEiLCJhIjoiOE53X2toRSJ9.2aMeuYERrEvKHul16lAJjA';
 var map = L.mapbox.map('map', 'jinalfoflia.f3118c98').addControl(L.mapbox.geocoderControl('mapbox.places'))
-    .setView([31.3736, 79.2801], 9);
+map.legendControl.addLegend(document.getElementById('legend').innerHTML) 
     var hash = L.hash(map);
 var myLayer= L.mapbox.featureLayer().setGeoJSON(gangotri).addTo(map)
 myLayer.eachLayer(function (layer) {
     layer.bindPopup('<strong>' + layer.feature.properties.name + '</strong>', { closeButton: false });
   }).addTo(map);
+
   myLayer.eachLayer(function (layer) {
     layer.bindPopup(layer.feature.properties.name, { closeButton: false });
   }).addTo(map);
-
 myLayer.on('mouseover', function (e) {
     e.layer.openPopup();
 });
@@ -35,5 +68,11 @@ myLayer.on('mouseout', function (e) {
     e.layer.closePopup();
 });
 </script>
+
+
+
+
+
+
 </body>
 </html>
