@@ -29,7 +29,7 @@
 </style>
 <!-- Set the display of this container to none so we can
      add it programmatically to `legendControl` -->
-<div id='legend' class='dark' style='display:none;'>
+<div id='legend' style='display:none;'>
   <strong>Gangotri National Park</strong>
   <nav class='legend clearfix'>
     <span style='background:#F1EEF6;'></span>
@@ -95,10 +95,10 @@
 </div>
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoiamluYWxmb2ZsaWEiLCJhIjoiOE53X2toRSJ9.2aMeuYERrEvKHul16lAJjA';
-var map = L.mapbox.map('map', 'jinalfoflia.f3118c98').addControl(L.mapbox.geocoderControl('mapbox.places')) 
+var map = L.mapbox.map('map', 'jinalfoflia.d1d10b31').addControl(L.mapbox.geocoderControl('mapbox.places')) 
     var hash = L.hash(map);
     var layers = {
-      Basic: L.mapbox.tileLayer('jinalfoflia.f3118c98'),
+      Basic: L.mapbox.tileLayer('jinalfoflia.d1d10b31'),
       Outdoors: L.mapbox.tileLayer('examples.ik7djhcc'),
       Satellite: L.mapbox.tileLayer('examples.map-igb471ik')
   };
