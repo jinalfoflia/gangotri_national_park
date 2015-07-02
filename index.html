@@ -8,12 +8,13 @@
 <script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
 <style>
-  body { margin:0; padding:0; }
-  #map { position:absolute; top:0; bottom:0; width:100%; }
+    body { margin: 0; padding: 0; }
+    #map { position: absolute; top:0; bottom:0; width:100%; }
+    
+    }
 </style>
 </head>
 <body>
-
 <style>
 .legend label,
 .legend span {
@@ -26,10 +27,9 @@
   color:#808080;
   }
 </style>
-
 <!-- Set the display of this container to none so we can
      add it programmatically to `legendControl` -->
-<div id='legend' style='display:none;'>
+<div id='legend' class='dark' style='display:none;'>
   <strong>Gangotri National Park</strong>
   <nav class='legend clearfix'>
     <span style='background:#F1EEF6;'></span>
@@ -46,13 +46,21 @@
 </div>
 
 	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
-<div id='map' class='dark'></div>
+<div id='map'></div>
 
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoiamluYWxmb2ZsaWEiLCJhIjoiOE53X2toRSJ9.2aMeuYERrEvKHul16lAJjA';
-var map = L.mapbox.map('map', 'jinalfoflia.f3118c98').addControl(L.mapbox.geocoderControl('mapbox.places'))
-map.legendControl.addLegend(document.getElementById('legend').innerHTML) 
+var map = L.mapbox.map('map', 'jinalfoflia.f3118c98').addControl(L.mapbox.geocoderControl('mapbox.places')) 
     var hash = L.hash(map);
+    var layers = {
+      Basic: L.mapbox.tileLayer('jinalfoflia.f3118c98'),
+      Outdoors: L.mapbox.tileLayer('examples.ik7djhcc'),
+      Satellite: L.mapbox.tileLayer('examples.map-igb471ik')
+  };
+  //layers.Basic.addTo(map);
+  L.control.layers(layers).addTo(map);
+
+  map.legendControl.addLegend(document.getElementById('legend').innerHTML)
 var myLayer= L.mapbox.featureLayer().setGeoJSON(gangotri).addTo(map)
 myLayer.eachLayer(function (layer) {
     layer.bindPopup('<strong>' + layer.feature.properties.name + '</strong>', { closeButton: false });
@@ -68,11 +76,5 @@ myLayer.on('mouseout', function (e) {
     e.layer.closePopup();
 });
 </script>
-
-
-
-
-
-
 </body>
 </html>
