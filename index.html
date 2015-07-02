@@ -120,6 +120,18 @@ myLayer.on('mouseover', function (e) {
 myLayer.on('mouseout', function (e) {
     e.layer.closePopup();
 });
+var nprTiles = L.mapbox.tileLayer('examples.npr-stations').addTo(map);
+var nprGrid = L.mapbox.gridLayer('examples.npr-stations').addTo(map);
+// you would usually use the gridControl to display a nice box in the corner
+// with your data, since we want a popup instead we won't initialize the gridControl
+
+nprGrid.on('click', function(e) {
+    if (!e.data) return;
+    var popup = L.popup()
+        .setLatLng(e.latLng)
+        .setContent(e.data.name)
+        .openOn(map);
+});
 
 // move the attribution control out of the way
 map.attributionControl.setPosition('bottomleft');
@@ -143,18 +155,7 @@ var directionsRoutesControl = L.mapbox.directions.routesControl('routes', direct
 var directionsInstructionsControl = L.mapbox.directions.instructionsControl('instructions', directions)
     .addTo(map);
 
-var nprTiles = L.mapbox.tileLayer('examples.npr-stations').addTo(map);
-var nprGrid = L.mapbox.gridLayer('examples.npr-stations').addTo(map);
-// you would usually use the gridControl to display a nice box in the corner
-// with your data, since we want a popup instead we won't initialize the gridControl
 
-nprGrid.on('click', function(e) {
-    if (!e.data) return;
-    var popup = L.popup()
-        .setLatLng(e.latLng)
-        .setContent(e.data.name)
-        .openOn(map);
-});
 </script>
 </body>
 </html>
