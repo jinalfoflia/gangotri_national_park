@@ -95,7 +95,7 @@
 </div>
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoiamluYWxmb2ZsaWEiLCJhIjoiOE53X2toRSJ9.2aMeuYERrEvKHul16lAJjA';
-var map = L.mapbox.map('map', 'jinalfoflia.d1d10b31').addControl(L.mapbox.geocoderControl('mapbox.places')) 
+var map = L.mapbox.map('map','jinalfoflia.d1d10b31').addControl(L.mapbox.geocoderControl('mapbox.places')) 
     var hash = L.hash(map);
     var layers = {
       jinal: L.mapbox.tileLayer('jinalfoflia.d1d10b31'),
@@ -143,8 +143,8 @@ var directionsRoutesControl = L.mapbox.directions.routesControl('routes', direct
 var directionsInstructionsControl = L.mapbox.directions.instructionsControl('instructions', directions)
     .addTo(map);
 
-var nprTiles = L.mapbox.tileLayer('jinalfoflia.d1d10b31.npr-stations').addTo(map);
-var nprGrid = L.mapbox.gridLayer('jinalfoflia.d1d10b31.npr-stations').addTo(map);
+var nprTiles = L.mapbox.tileLayer('jinalfoflia.d1d10b31').addTo(map);
+var nprGrid = L.mapbox.gridLayer('jinalfoflia.d1d10b31').addTo(map);
 // you would usually use the gridControl to display a nice box in the corner
 // with your data, since we want a popup instead we won't initialize the gridControl
 
